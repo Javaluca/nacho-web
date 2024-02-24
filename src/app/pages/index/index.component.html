@@ -1,1 +1,13 @@
-<p>index works!</p>
+<div class="main prevent-select">
+    <div class="center">
+        <div class="logo nacho-logo">
+            Nacho
+        </div>
+        <div class="bar">
+            <input class="urlbar" type="text" title="Url input" [(ngModel)]="url" (keyup.enter)="onEnter($event)" />
+            <p class="start" title="Start virtual browsing">
+                ►
+            </p>
+        </div>
+    </div>
+</div>

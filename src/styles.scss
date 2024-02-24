@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Borel&family=Salsa&display=swap');
+
 /* http://meyerweb.com/eric/tools/css/reset/
    v5.0.2 | 20191019
    License: none (public domain)
@@ -50,3 +52,10 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+.nacho-logo {
+    font-family: "Borel", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+  
