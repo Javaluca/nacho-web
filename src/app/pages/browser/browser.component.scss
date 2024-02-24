@@ -1,0 +1,26 @@
+.full-wiewport {
+    width: 100vw;
+    height: 100vh;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+
+    .option-bar {
+        display: flex;
+        background-color: purple;
+        height: 1.5em;
+        color: white;
+        flex-flow: row;
+        gap: 5em;
+        align-items: center;
+        padding: 0 .5em;
+    }
+
+    .wiewport {
+        flex-grow: 1;
+        background-color: lightblue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
