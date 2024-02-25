@@ -2,6 +2,10 @@ export type NachoEvent = {
     type: string;
 }
 
+export type StartEvent = NachoEvent & {
+    url: string
+}
+
 export type MouseMove = NachoEvent & {
     x: number,
     y: number
@@ -18,7 +22,7 @@ export type ViewPortResize = NachoEvent & {
 }
 
 export type KeyDown = NachoEvent & {
-    key: number,
+    key: string,
     altKey: boolean,
     ctrlKey: boolean,
     shiftKey: boolean,

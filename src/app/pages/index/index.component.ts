@@ -14,7 +14,6 @@ export class IndexComponent {
   public url: string = '';
 
   constructor(private router: Router) {
-
   }
 
   onEnter(event: Event): void {
@@ -22,7 +21,7 @@ export class IndexComponent {
     if (!this.url) {
       return;
     }
-    this.router.navigate(['browse'])
+    this.router.navigate(['browse'], { info: this.url });
   }
 
 }

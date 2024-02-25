@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { NachoEventHandler } from '../../services/event/handler/nacho-event-handler';
+import { concatMap } from 'rxjs';
 import { InputSinkService } from '../../services/event/input-sink.service';
-import { NachoEvent } from '../../services/event/types';
+import { SessionService } from '../../services/session/session.service';
 
 @Component({
   selector: 'app-browser',
@@ -12,23 +12,27 @@ import { NachoEvent } from '../../services/event/types';
 })
 export class BrowserComponent implements OnInit {
 
-
   @ViewChild('viewport', { static: true }) viewport!: ElementRef;
 
-  registeredNachoHandlers: NachoEventHandler<NachoEvent>[] = [];
-
-  constructor(private inputSinkService: InputSinkService) {
+  constructor(private inputSinkService: InputSinkService, private sessionService: SessionService) {
   }
-
 
   ngOnInit(): void {
     if (!this.viewport) {
       throw new Error('Error on identify viewport ref');
     }
 
-    this.inputSinkService.registerAll(this.viewport).subscribe(
-      e => this.viewport.nativeElement.innerHTML = JSON.stringify(e)
+
+    this.sessionService.startBrowsingSession('https://www.google.com/').pipe(
+      concatMap(e => this.inputSinkService.registerAll(this.viewport))
+    ).subscribe(
+      e => this.sessionService.onSendText(JSON.stringify(e))
     );
+
+
+    this.sessionService.onMessageEvent$.pipe().subscribe((data) => {
+      this.viewport.nativeElement.innerHTML = data.data;
+    });
   }
 
 }
